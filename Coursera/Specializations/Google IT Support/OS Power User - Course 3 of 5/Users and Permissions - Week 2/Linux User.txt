@@ -1,0 +1,114 @@
+1. Administrator user of winodws == Root user.
+
+Commands:-----
+>> cat /etc/sudoers 
+- wont work as this file is private.
+- your need to be a super user to run this file. but it may be dangerous so be careful
+
+>> sudo cat /etc/sudoers
+
+>> sudo su - 
+- will change the user to root user.
+
+>> cat /etc/group
+- groups details
+sudo: x: 32: cindy
+x means group password(encripted)
+32 means group id
+cindy means the user of that group.
+
+>> cat /etc/passwords
+- list of users./ user details
+
+2. Linux Password
+
+Command:-----
+>> passwd xyz
+- xyz means user name
+
+>> sudo passwd -e xyz
+- it expires xyz's password immediately and force the user to set new password in next login
+
+3. Adding or removing user:
+
+Command:-----
+>> sudo useradd xyz
+- will create xyz account and a home directory
+
+>> sudo userdel xyz
+- will delete xyz from your machine
+
+4. File Permission:
+basically 3 types are allowed here - read, write and executable.
+
+Command:------
+>> ls -l ~/my_file or >> ls -l my_cool_file
+- return status of file permission in the way like this - "-rwxrw-r--" 
+In this example, dash means that the file we're looking at is just a regular file. 
+Sometimes you might see D which stands for a directory. The next nine bits are our actual permissions, 
+
+first trio "rwx"  means 'user' have the permission to read, write and execute files.
+second trio "rw-" means 'group' have the permission to only read and write files.
+third trio "r--" means permission for all 'users'. Only reading file is permitted.
+
+5. Windows File Permission: [important]
+First, pick which permission set you want to change. 
+The owner, which is denoted by u, 
+the group the file belongs to, which is denoted by a g, 
+or other users, which is noted by an o.
+
+To add or remove permissions, just use a plus or minus symbol that indicate who the permission affects. 
+
+Command:-----[replace my_cool_file with your file name]
+>> ls -ld my_folder
+- to check the permission staus of my_folder
+
+>> ls -l my_file
+- to chcek the permission status fo my_file
+
+>>  chmod u+x my_cool_file.
+- add executable permission for the owner or u
+
+>> chmod u-x my_cool_file
+- remove the permission you gave previously for u or owner
+
+>> chmod u+rx my_cool_file
+- add mulitple permission(here executable and read) to the owner.
+
+>> chmod ugo+r my_cool_file
+- give the read permission to owner, group and other users.
+
+The numerical equivalent of rwx is 
+4 for read or r, 
+2 for write or w, and 
+1 for execute or x.
+
+>> sudo chmod 754 my_cool_file [best and easiest approach]
+- this means we grant 
+read,write and execute(rwx-7) permission to owner(u)
+read, execute(rx-5) permission to group(g)
+read (r-4) permission to other users
+
+>> sudo chown user_name my_cool_file
+- change the owner of that file to user_name
+
+>> sudo chgrp group_name my_cool_file
+- change the group owner of that file to group_name
+
+6. SetUID, SetGID, Sticky Bit:
+SetUID bit is used to allow a file to be run as the owner of the file.
+SetGID bit is used to allow a file to be run as the group of the file.
+Sticky bit allows the file to be modified by anyone, but only removed by the owner or root.
+
+Command:-----
+>> passwd
+- its used to change the root user password
+
+>> sudo chmod u+s my_cool_file or sudo chmod 4755 my_cool_file
+- will ask to give the user password. Then it will set the UID.
+
+>> sudo chmod g+s my_cool_file or sudo chmod 2755 my_cool_file
+- Then it will set the GID.
+
+>> sudo chmod +t my_cool_file or sudo chmod 1755 my_cool_file
+- this will enable the sticky bit.

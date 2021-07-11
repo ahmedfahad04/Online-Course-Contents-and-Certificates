@@ -1,0 +1,14 @@
+Course Programming Resources
+The BlueJ Environment download, documentation, and programming resources are available at:
+
+http://www.dukelearntoprogram.com/course3/index.php 
+
+Please Note! If you have already downloaded a version of BlueJ that you did not download from DukeLearnToProgram, you will need to uninstall and download this one to get the edu.duke package.
+
+In addition, BlueJ has provided a playlist of videos explaining some key Java terminology and how to use BlueJ: https://www.youtube.com/playlist?list=PLYPWr4ErjcnzWB95MVvlKArO6PIfv1fHd .
+
+Download BlueJ
+From the above linked DukeLearnToProgram page, click on "Download BlueJ Environment" 
+(http://www.dukelearntoprogram.com/downloads/bluej.php ). 
+Follow the relevant instructions for your device's operating system (Windows, Mac, or Linux). 
+Note that on a Mac, you may want to move the BlueJ application to your "Applications" folder. 

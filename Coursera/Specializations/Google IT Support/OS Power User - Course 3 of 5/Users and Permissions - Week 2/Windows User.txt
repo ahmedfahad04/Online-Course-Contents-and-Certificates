@@ -1,0 +1,120 @@
+1. Windows Domain:
+A network of computers, user, files, etc that are added to a  central database.
+
+2. All the administratitve settings is on "Computer Mangement"
+
+3. UAC(User Access Control)
+A feature in Windows that  prevents unauthorized changes to a system.
+
+4. Using CLI to know about Groups and Users in Pc:
+
+Commands:-----
+>> Get-LocalUser 
+- user detials
+
+>> Get-LocalGroup
+- group detials
+
+>> Get-LocalGroupMember Administrators
+- users, groups under Administrator.
+
+5. Windows Password.[PowerShell should run as Administrator***]
+
+Command:-----
+>> net user xyz *
+- to reset user password
+xyz means the user name
+
+>> net user xyz /logonpasswordchg:yes
+- will force the user to change the password in the next log in to that pc.
+
+6. Supplemental Reading: https://docs.microsoft.com/en-us/previous-versions
+/tn-archive/cc875839(v=technet.10)?redirectedfrom=MSDN
+
+7. Adding or removing users:
+Under Local User and group, click right button of mouse and go to New User.
+Must check on User must change password in next log on.
+
+Command:-----
+>> net user xyz * /add
+- it adds xyz as a new account
+
+>>  net user xyz /logonpasswordchg:yes
+- force the user to reset his/her password at his first log in.
+
+>> net user xyz * /add /logonpasswordchg:yes
+- does the above work in one step
+
+>> net user xyz /del
+- delete the user xyz from your machine
+
+8. File Access and Permissions:
+In Windows, 'files and directory' permissions are assigned using Access Control Lists or ACLs. 
+Specifically, we're going to work with Discretionary Access Control Lists or DACLs.
+'Windows files and folders' can also have System Access Control Lists or SACLs assigned to them. 
+SACLs are used to tell windows that it should use an "event log" to make a note of every time someone accesses a file or folder. 
+
+Home directory in windows means: C:/User/xyz
+
+File permission:
+Read: The Read permission lets you see that a file exists, 
+and allows you to read its contents. It also lets you read the files
+ and directories in a directory.
+
+Read and Execute: the Read and Execute permission lets
+you read files, and if the file is an executable, you can run the file. 
+Read and Execute includes Read, so if you select Read and Execute, 
+Read will automatically be selected
+
+List folder contents: List folder contents is an alias for Read and 
+Execute on a directory
+
+Write: the Write permission lets you make changes to a file.
+It might be surprising to you, but you can have write access to 
+a file without having read permission to that file. The write permission 
+also lets you create sub directories and write two files in the directory. 
+
+Modify: the Modify permission is an umbrella permission that include read, execute and write. 
+
+Full control: a user or group with full control can do anything they want to the file. It includes 
+all of the permissions of Modify, and adds the ability to take ownership of a file and change its ACLs. 
+
+Command:-----
+>> icacls
+- to know in details about the file permissions
+
+>> icacls C:\Users\ahmed\Documents
+- will let you know about the file permission of this location.
+
+
+9. Supplimentary reading: https://docs.microsoft.com/en-us/windows/win32/secauthz/access-control-lists?redirectedfrom=MSDN
+
+10. Windows Modifying Permissions:
+Goto specific folder or file. Then
+properties -> security -> Edit -> Add -> write the user name(click check name to sure youruser name) 
+-> check on the box below to access the permission you want to give to that user -> Apply and you are done.
+
+Guest users: This is a special type of user that's allowed to use the computer without a password. 
+Guest users are disabled by default. You might enable them in very specific situations.
+
+Command:-----
+>> icacls C:\Users\your_user_name\Downloads
+- to see the permission it has for different users.
+
+>> icacls 'C:\Users\your_user_name\Downloads\Video' /grant 'Everyone:(OI)(CI)(R)' [important]
+- to give to permission to READ file to everyone
+
+>> icacls 'C:\Users\your_user_name\Downloads' /remove Everyone
+- remove the permission you gave for everyone
+
+>> icacls 'C:\Users\your_user_name\Downloads' /grant 'Authenticated Users:(OI)(CI)(R)'
+- I just want the people that have passwords on the computer to be able to see them. 
+In that case, I want to use authenticated users group. That group doesn't include guest users.
+
+10. Windows Special Permission:
+Simple permissions are actually sets of special, or specific permissions.
+We're going to let users WD, or create files like data, AD, create folders and append data, and S for synchronize. 
+
+11. Supplemental Reading: https://docs.microsoft.com/en-us/previous-versions/windows/
+it-pro/windows-server-2008-R2-and-2008/cc732880(v=ws.11)?redirectedfrom=MSDN
+
