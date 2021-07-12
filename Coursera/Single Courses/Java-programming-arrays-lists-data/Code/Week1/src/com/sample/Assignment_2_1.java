@@ -1,5 +1,5 @@
 package com.sample;
-// TODO: Pending word. Incomplete
+
 
 class WordLengths{
     public int countWordLength(String word){
