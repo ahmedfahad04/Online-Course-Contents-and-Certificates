@@ -1,4 +1,7 @@
-package com.company;
+package com.sample;
+
+
+
 
 class WordPlay{
     public boolean isVowel(char ch){
@@ -29,7 +32,7 @@ class WordPlay{
     }
 }
 
-public class Assignment1 {
+public class Assignment_1_1 {
     public static void main(String[] args) {
         WordPlay obj1 = new WordPlay();
         System.out.println(obj1.replaceVowels("Hello World", '*'));

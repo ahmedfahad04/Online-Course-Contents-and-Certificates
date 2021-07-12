@@ -1,4 +1,4 @@
-package com.company;
+package com.sample;
 
 
 class CaesarCipher {
@@ -70,15 +70,64 @@ class CaesarCipher {
         return encriptedMessage.toString();
     }
 
+    public int[] countLetters(String text){
+        int[] letters = new int[26];
+
+        for(int i=0; i<text.length(); i++){
+
+            char ch = Character.toLowerCase(text.charAt(i));
+            if(Character.isAlphabetic(ch)) {
+                int id = (int) (ch - 97);
+//                System.out.println(id);
+                letters[id]++;
+            }
+            else continue;
+        }
+
+//        for(int x: letters){
+//            System.out.println("FREQ: " + x);
+//        }
+        return letters;
+    }
+
+    public int maxIndex(int[] freq){
+        int max = 0;
+        for(int i=0 ; i<freq.length; i++){
+            if(freq[i] > freq[max]) max = i;
+        }
+        return max;
+    }
+
+    public String decrypt(String encrypted){
+        int[] freqs = countLetters(encrypted);
+
+        int maxDex = maxIndex(freqs);
+        System.out.println("MAX id: " + maxDex);
+//        int dkey = maxDex - 4;
+//        if(maxDex < 4){
+//            dkey = 26 - (4-maxDex);
+//        }
+
+        return encrypt(encrypted, 26-maxDex);
+    }
+
 }
 
-    public class Assignment2 {
+    public class Assignment_1_2 {
 
         public static void main(String[] args) {
             CaesarCipher obj = new CaesarCipher();
 
-            System.out.println(obj.encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
-            System.out.println(obj.encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!",8, 21));
+//            System.out.println(obj.encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
+//            System.out.println(obj.encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!",8, 21));
+
+            String data = "University of Dhaka";
+            System.out.println("TEXT: " + data);
+            String encrypt = obj.encrypt(data, 19);
+
+            System.out.println("Encrypted: " + encrypt);
+            System.out.println("Decrypted: " + obj.decrypt(encrypt));
+
         }
 }
 
