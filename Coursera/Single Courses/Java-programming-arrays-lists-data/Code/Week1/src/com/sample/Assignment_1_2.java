@@ -78,15 +78,17 @@ class CaesarCipher {
             char ch = Character.toLowerCase(text.charAt(i));
             if(Character.isAlphabetic(ch)) {
                 int id = (int) (ch - 97);
-//                System.out.println(id);
                 letters[id]++;
             }
             else continue;
         }
 
-//        for(int x: letters){
-//            System.out.println("FREQ: " + x);
-//        }
+//       for(int i = 0; i<26; i++){
+//           if(letters[i]!=0){
+//               System.out.println(letters[i] + " --- " + (char)('a'+i));
+//           }
+//       }
+
         return letters;
     }
 
@@ -103,12 +105,14 @@ class CaesarCipher {
 
         int maxDex = maxIndex(freqs);
         System.out.println("MAX id: " + maxDex);
-//        int dkey = maxDex - 4;
-//        if(maxDex < 4){
-//            dkey = 26 - (4-maxDex);
-//        }
 
-        return encrypt(encrypted, 26-maxDex);
+        int dkey = maxDex - 4;
+        if(maxDex < 4){
+            dkey = 26 - (4-maxDex);
+        }
+
+        System.out.println("Dkey: " + dkey);
+        return encrypt(encrypted, dkey);
     }
 
 }
@@ -121,9 +125,9 @@ class CaesarCipher {
 //            System.out.println(obj.encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
 //            System.out.println(obj.encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!",8, 21));
 
-            String data = "University of Dhaka";
+            String data = "Istiaq Ahmed Fahad";
             System.out.println("TEXT: " + data);
-            String encrypt = obj.encrypt(data, 19);
+            String encrypt = obj.encrypt(data, 15);
 
             System.out.println("Encrypted: " + encrypt);
             System.out.println("Decrypted: " + obj.decrypt(encrypt));

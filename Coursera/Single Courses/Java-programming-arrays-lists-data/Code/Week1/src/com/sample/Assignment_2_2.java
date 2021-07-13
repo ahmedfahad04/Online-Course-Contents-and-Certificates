@@ -1,5 +1,9 @@
 package com.sample;
 
+import com.sample.FileInput;
+
+import java.io.IOException;
+
 class CaeserBreaker{
 
     public void testDecrypt(String text){
@@ -22,6 +26,7 @@ class CaeserBreaker{
         CaesarCipher cc = new CaesarCipher();
         int[] cnt = cc.countLetters(s);
         int maxDex = cc.maxIndex(cnt);
+
         int dkey = maxDex - 4;
         if(maxDex < 4){
             dkey = 26 - (4-maxDex);
@@ -29,6 +34,7 @@ class CaeserBreaker{
         return dkey;
     }
 
+    // this is for unknown key.
     public String decrypTwoKey(String encrypted){
         CaesarCipher cc = new CaesarCipher();
         String firstHalf = halfOfString(encrypted,0);
@@ -49,18 +55,27 @@ class CaeserBreaker{
 }
 
 public class Assignment_2_2 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         CaeserBreaker cb = new CaeserBreaker();
         CaesarCipher cc = new CaesarCipher();
-        String data = "Top ncmy qkff vi vguv vbg ycpx";
-//        cb.testDecrypt(data);
-//        System.out.println(cb.halfOfString("Qbkm Zgis", 1));
 
-//        String info = cc.encryptTwoKeys(data, 2, 20);
-        System.out.println(cb.decrypTwoKey("Top ncmy qkff vi vguv vbg ycpx"));
-        System.out.println(cc.encryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx", 26-2, 26-20));
+        FileInput fi = new FileInput("src/com/sample/data.txt");
+        String data = fi.readFile();
+
+
+        System.out.println("Text: " + data);
+        String Single = cc.encrypt(data, 15);
+        String Double = cc.encryptTwoKeys(data, 21, 8);
+
+//        System.out.println("Single Key(Encrypted): " + Single );
+//        System.out.println("DECRYPTED: " + cc.encrypt(Single, 26-15));
+
+        // not working
+        System.out.println("\nDouble Key: " + data);
+        System.out.println("DECRYPTED(Unknown Key): " + cb.decrypTwoKey(data));
+//        System.out.println("DECRYPTED(Known Key): " + cc.encryptTwoKeys(data, 26-14, 26-24));
     }
-// 4
+    // 4
     // 8
 
     // Run like wild to beat the wind
@@ -68,4 +83,11 @@ public class Assignment_2_2 {
     // Geometric computing research at Duke
     // 17,4
 
+//    Rpc ndj xbpvxct axut LXIWDJI iwt xcitgcti PCS rdbejitgh xc ndjg edrzti?
+//     Xii twp duvodvz gqam EDBCWPB bcm qibzzimo VVY xwhxpbzzn dv gjcm kwxszb?
+//The original name of Java was Oak.
+
+//    The name of the Java Mascot is Duke. Woeoeee!
+//Duke Computer Science Department Overview
+//17,4
 }

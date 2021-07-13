@@ -27,6 +27,6 @@ class WordLengths{
 
 public class Assignment_2_1 {
     public static void main(String[] args) {
-
+        // this was done in bluej IDE
     }
 }
